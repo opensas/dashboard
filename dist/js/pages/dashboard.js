@@ -183,9 +183,9 @@ $(function () {
     resize   : true,
     colors   : ['#3c8dbc', '#f56954', '#00a65a'],
     data     : [
-      { label: 'Download Sales', value: 12 },
-      { label: 'In-Store Sales', value: 30 },
-      { label: 'Mail-Order Sales', value: 20 }
+      { label: 'Acuerdos', value: 3245 },
+      { label: 'Convenios', value: 156 },
+      { label: 'Laudos', value: 20 }
     ],
     hideHover: 'auto'
   });
@@ -206,5 +206,83 @@ $(function () {
       window.console.log($(this), 'The element has been unchecked');
     }
   });
+
+  // -------------
+  // - PIE CHART -
+  // -------------
+  // Get context with jQuery - using jQuery's .get() method.
+  var pieChartCanvas = $('#contenidoDiscutidos_pieChart').get(0).getContext('2d');
+  var pieChart = new Chart(pieChartCanvas);
+  var PieData = [
+    {
+      value: 2850,
+      color: '#f56954',
+      highlight: '#f56954',
+      label: 'Salario'
+    },
+    {
+      value: 2600,
+      color: '#00a65a',
+      highlight: '#00a65a',
+      label: 'Bono/Suplemento'
+    },
+    {
+      value: 2370,
+      color: '#f39c12',
+      highlight: '#f39c12',
+      label: 'Plus productividad'
+    },
+    {
+      value: 1780,
+      color: '#00c0ef',
+      highlight: '#00c0ef',
+      label: 'Seguridad e higiene'
+    },
+    {
+      value: 890,
+      color: '#3c8dbc',
+      highlight: '#3c8dbc',
+      label: 'Horas extras'
+    },
+    {
+      value: 4260,
+      color: '#d2d6de',
+      highlight: '#d2d6de',
+      label: 'Otros'
+    }
+  ];
+  var pieOptions = {
+    // Boolean - Whether we should show a stroke on each segment
+    segmentShowStroke: true,
+    // String - The colour of each segment stroke
+    segmentStrokeColor: '#fff',
+    // Number - The width of each segment stroke
+    segmentStrokeWidth: 1,
+    // Number - The percentage of the chart that we cut out of the middle
+    percentageInnerCutout: 50, // This is 0 for Pie charts
+    // Number - Amount of animation steps
+    animationSteps: 100,
+    // String - Animation easing effect
+    animationEasing: 'easeOutBounce',
+    // Boolean - Whether we animate the rotation of the Doughnut
+    animateRotate: true,
+    // Boolean - Whether we animate scaling the Doughnut from the centre
+    animateScale: false,
+    // Boolean - whether to make the chart responsive to window resizing
+    responsive: true,
+    // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
+    maintainAspectRatio: false,
+    // String - A legend template
+    legendTemplate: '<ul class=\'<%=name.toLowerCase()%>-legend\'><% for (var i=0; i<segments.length; i++){%><li><span style=\'background-color:<%=segments[i].fillColor%>\'></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>',
+    // String - A tooltip template
+    tooltipTemplate: 'Contenido <%=label%>: <%=value %>'
+  };
+  // Create pie or douhnut chart
+  // You can switch between pie and douhnut using the method below.
+  pieChart.Doughnut(PieData, pieOptions);
+  // -----------------
+  // - END PIE CHART -
+  // -----------------
+
 
 });
